@@ -61,12 +61,8 @@ exports.updateContact = (req, res, next) => {
         contact.save().then(contact => {
           res.status(200).json(contact);
         }).catch(err => {
-          res.status(400);
-          res.json({
-            title: "Something went wrong",
-            message: err.message,
-            stackTrace: err.stack
-          })
+          res.status(404);
+          next(new Error('Contact Not Found'));
         })
       }
     }
@@ -90,11 +86,7 @@ exports.getContact = (req, res, next) => {
     })
     .catch(err => {
       res.status(404);
-      res.json({
-        title: "Contact Not Found",
-        message: err.message,
-        stackTrace: err.stack
-      });
+      next(new Error('Contact Not Found'));
     });
 }
 
@@ -109,11 +101,7 @@ exports.deleteContact = (req, res, next) => {
     })
     .catch(err => {
       res.status(404);
-      res.json({
-        title: "Contact Not Found",
-        message: err.message,
-        stackTrace: err.stack
-      });
+      next(new Error('Contact Not Found'));
     });
 }
 
