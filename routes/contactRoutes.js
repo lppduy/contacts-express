@@ -2,14 +2,8 @@ const expres = require('express');
 const router = expres.Router();
 const { getContacts, createContact, updateContact, getContact, deleteContact } = require('../controllers/contactController');
 
-router.get('/', getContacts);
+router.route('/').get(getContacts).post(createContact);
 
-router.post('/', createContact);
-
-router.put('/:id', updateContact);
-
-router.get('/:id', getContact);
-
-router.delete('/:id', deleteContact);
+router.route('/:id').put(updateContact).get(getContact).delete(deleteContact);
 
 module.exports = router;
