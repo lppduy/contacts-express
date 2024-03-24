@@ -45,7 +45,18 @@ exports.updateContact = asyncHandler(
 //@access Public
 exports.getContact = asyncHandler(
   async (req, res, next) => {
-    res.status(200).json({ message: `Get contact with id of ${req.params.id}` });
+    Contact.findById(req.params.id)
+      .then(contact => {
+        res.status(200).json(contact);
+      })
+      .catch(err => {
+        res.status(404);
+        res.json({
+          title: "Contact Not Found",
+          message: err.message,
+          stackTrace: err.stack
+        });
+      });
   }
 );
 

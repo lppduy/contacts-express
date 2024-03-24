@@ -1,7 +1,8 @@
 const { CONSTANTS } = require('../constants');
 
-exports.errorHandler = (err, req, res, next) => {
-
+exports.errorHandler = async (err, req, res, next) => {
+  // console.log(err.message);
+  console.log('>>>>>>>>>>', res.statusCod)
   const statusCode = res.statusCode ? res.statusCode : 500;
 
   switch (statusCode) {
