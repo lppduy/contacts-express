@@ -1,7 +1,7 @@
 const Contact = require('../models/contactModel');
 //@desc Get all contacts
 //@route GET /api/contacts
-//@access Public
+//@access private
 exports.getContacts = (req, res, next) => {
   Contact.find()
     .then(contacts => {
@@ -9,17 +9,13 @@ exports.getContacts = (req, res, next) => {
     })
     .catch(err => {
       res.status(400);
-      res.json({
-        title: "Something went wrong",
-        message: err.message,
-        stackTrace: err.stack
-      }) // error: email existed or something else -> handle later
+      next(new Error('Something went wrong')); // error: email existed or something else -> handle later
     })
 }
 
 //@desc Create a contact
 //@route POST /api/contacts
-//@access Public
+//@access private
 exports.createContact = (req, res, next) => {
 
   const { name, email, phone } = req.body;
@@ -38,18 +34,14 @@ exports.createContact = (req, res, next) => {
     res.status(201).json(contact);
   }).catch(err => {
     res.status(400);
-    res.json({
-      title: "Something went wrong",
-      message: err.message,
-      stackTrace: err.stack
-    })
+    next(new Error('Something went wrong'));
   })
 }
 
 
 //@desc Update a contact
 //@route PUT /api/contacts/:id
-//@access Public
+//@access private
 exports.updateContact = (req, res, next) => {
   Contact.findById(req.params.id)
     .then(contact => {
@@ -61,24 +53,20 @@ exports.updateContact = (req, res, next) => {
         contact.save().then(contact => {
           res.status(200).json(contact);
         }).catch(err => {
-          res.status(404);
-          next(new Error('Contact Not Found'));
+          res.status(400);
+          next(new Error('Something went wrong'));
         })
       }
     }
     ).catch(err => {
       res.status(404);
-      res.json({
-        title: "Contact Not Found",
-        message: err.message,
-        stackTrace: err.stack
-      });
+      next(new Error('Contact Not Found'));
     })
 };
 
 //@desc Get a contact
 //@route GET /api/contacts/:id
-//@access Public
+//@access private
 exports.getContact = (req, res, next) => {
   Contact.findById(req.params.id)
     .then(contact => {
@@ -93,7 +81,7 @@ exports.getContact = (req, res, next) => {
 
 //@desc Delete a contact
 //@route DELETE /api/contacts/:id
-//@access Public
+//@access private
 exports.deleteContact = (req, res, next) => {
   Contact.findByIdAndDelete(req.params.id)
     .then(() => {
