@@ -9,6 +9,13 @@ exports.getContacts = (req, res, next) => {
 //@route POST /api/contacts
 //@access Public
 exports.createContact = (req, res, next) => {
+
+  const { name, email, phone } = req.body;
+
+  if (!name || !email || !phone) {
+    res.status(400);
+    throw new Error('Please fill in all fields');
+  }
   res.status(200).json({ message: 'Create a contact' });
 };
 
