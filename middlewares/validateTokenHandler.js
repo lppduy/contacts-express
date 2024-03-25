@@ -12,7 +12,7 @@ exports.validateToken = asyncHandler(async (req, res, next) => {
         throw new Error('Not authorized, token failed');
       }
       console.log('decoded', decoded)
-      req.user = decoded;
+      req.user = decoded.user;
       next();
     });
   }

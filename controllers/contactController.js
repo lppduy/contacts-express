@@ -1,42 +1,40 @@
 const Contact = require('../models/contactModel');
+const asyncHandler = require('express-async-handler');
+
+
 //@desc Get all contacts
 //@route GET /api/contacts
-//@access private
-exports.getContacts = (req, res, next) => {
-  Contact.find()
-    .then(contacts => {
-      res.status(200).json(contacts);
-    })
-    .catch(err => {
-      res.status(400);
-      next(new Error('Something went wrong')); // error: email existed or something else -> handle later
-    })
-}
+//@access Private
+exports.getContacts = asyncHandler(async (req, res, next) => {
+  console.log(">>>>>>>>>>>.", req.user._id)
+  const contacts = await Contact.find({ user_id: req.user._id });
+  res.status(200).json(contacts);
+});
 
 //@desc Create a contact
 //@route POST /api/contacts
 //@access private
-exports.createContact = (req, res, next) => {
+exports.createContact = asyncHandler(async (req, res, next) => {
 
   const { name, email, phone } = req.body;
 
   if (!name || !email || !phone) {
     res.status(400);
-    throw new Error('Please fill in all fields');
+    throw new Error('Please enter all fields');
   }
-  const newContact = new Contact({
+
+
+
+  console.log(">>>>>>>>>>>.", req.user._id)
+  const contact = await Contact.create({
     name,
     email,
-    phone
+    phone,
+    user_id: req.user._id
   });
 
-  newContact.save().then(contact => {
-    res.status(201).json(contact);
-  }).catch(err => {
-    res.status(400);
-    next(new Error('Something went wrong'));
-  })
-}
+  res.status(201).json(contact);
+});
 
 
 //@desc Update a contact
