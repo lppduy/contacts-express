@@ -12,7 +12,7 @@ To install and run this project, follow these steps:
 1. Clone the project to your machine:
 
 ```bash
-git clone [https://github.com/lppduy/contacts-express]
+git clone https://github.com/lppduy/contacts-express
 ```
 
 2. Install the dependencies:
