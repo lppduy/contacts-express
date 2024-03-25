@@ -83,5 +83,5 @@ exports.loginUser = async (req, res, next) => {
 //@route POST /api/users/current
 //@access Private
 exports.getCurrentUser = (req, res, next) => {
-  res.json({ msg: 'Current user information' });
+  res.json(req.user);
 }
