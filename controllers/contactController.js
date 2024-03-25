@@ -6,7 +6,14 @@ const asyncHandler = require('express-async-handler');
 //@route GET /api/contacts
 //@access Private
 exports.getContacts = asyncHandler(async (req, res, next) => {
-  const contacts = await Contact.find({ user_id: req.user._id });
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  const contacts = await Contact.find()
+    .skip(skip)
+    .limit(limit);
+
   res.status(200).json(contacts);
 });
 
