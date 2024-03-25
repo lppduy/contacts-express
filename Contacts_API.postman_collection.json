@@ -17,7 +17,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiZHV5IiwiZW1haWwiOiJkdXlAZ21haWwuY29tIiwiX2lkIjoiNjYwMTE2NzVkMGFhMTdlODA4ZmViZjcwIn0sImlhdCI6MTcxMTM0NzMyNCwiZXhwIjoxNzEyNjQzMzI0fQ.mMceukWXF9lY9GK1tTIViT-VTpxybxXfv_Aaf6Aev68",
+								"value": "Bearer ",
 								"type": "text"
 							}
 						],
@@ -53,7 +53,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiZHV5IiwiZW1haWwiOiJkdXlAZ21haWwuY29tIiwiX2lkIjoiNjYwMTE2NzVkMGFhMTdlODA4ZmViZjcwIn0sImlhdCI6MTcxMTM0NzMyNCwiZXhwIjoxNzEyNjQzMzI0fQ.mMceukWXF9lY9GK1tTIViT-VTpxybxXfv_Aaf6Aev68",
+								"value": "Bearer ",
 								"type": "text"
 							}
 						],
@@ -77,7 +77,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiZHV5IiwiZW1haWwiOiJkdXlAZ21haWwuY29tIiwiX2lkIjoiNjYwMTE2NzVkMGFhMTdlODA4ZmViZjcwIn0sImlhdCI6MTcxMTM0NzMyNCwiZXhwIjoxNzEyNjQzMzI0fQ.mMceukWXF9lY9GK1tTIViT-VTpxybxXfv_Aaf6Aev68",
+								"value": "Bearer ",
 								"type": "text"
 							}
 						],
@@ -101,7 +101,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiZHV5IiwiZW1haWwiOiJkdXlAZ21haWwuY29tIiwiX2lkIjoiNjYwMTE2NzVkMGFhMTdlODA4ZmViZjcwIn0sImlhdCI6MTcxMTM0NzMyNCwiZXhwIjoxNzEyNjQzMzI0fQ.mMceukWXF9lY9GK1tTIViT-VTpxybxXfv_Aaf6Aev68",
+								"value": "Bearer ",
 								"type": "text"
 							}
 						],
@@ -116,7 +116,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoibWFyayIsImVtYWlsIjoibWFya0BnbWFpbC5jb20iLCJfaWQiOiI2NjAxMWEzODAyMzViZGYzZmJjNWRmNDIifSwiaWF0IjoxNzExMzQ4Mjg4LCJleHAiOjE3MTI2NDQyODh9.JwoaC43n29sB0cr6WeE7YLrNG46lgHViZC4RIu9ZA6o",
+								"value": "Bearer ",
 								"type": "text"
 							}
 						],
@@ -175,7 +175,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiZHV5IiwiZW1haWwiOiJkdXlAZ21haWwuY29tIiwiX2lkIjoiNjYwMTE2NzVkMGFhMTdlODA4ZmViZjcwIn0sImlhdCI6MTcxMTM0NzMyNCwiZXhwIjoxNzEyNjQzMzI0fQ.mMceukWXF9lY9GK1tTIViT-VTpxybxXfv_Aaf6Aev68",
+								"value": "Bearer ",
 								"type": "text"
 							}
 						],
