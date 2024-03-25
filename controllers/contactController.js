@@ -6,7 +6,6 @@ const asyncHandler = require('express-async-handler');
 //@route GET /api/contacts
 //@access Private
 exports.getContacts = asyncHandler(async (req, res, next) => {
-  console.log(">>>>>>>>>>>.", req.user._id)
   const contacts = await Contact.find({ user_id: req.user._id });
   res.status(200).json(contacts);
 });
@@ -23,9 +22,6 @@ exports.createContact = asyncHandler(async (req, res, next) => {
     throw new Error('Please enter all fields');
   }
 
-
-
-  console.log(">>>>>>>>>>>.", req.user._id)
   const contact = await Contact.create({
     name,
     email,
@@ -37,58 +33,86 @@ exports.createContact = asyncHandler(async (req, res, next) => {
 });
 
 
-//@desc Update a contact
-//@route PUT /api/contacts/:id
-//@access private
-exports.updateContact = (req, res, next) => {
-  Contact.findById(req.params.id)
-    .then(contact => {
-      if (contact) {
-        contact.name = req.body.name || contact.name;
-        contact.email = req.body.email || contact.email;
-        contact.phone = req.body.phone || contact.phone;
-
-        contact.save().then(contact => {
-          res.status(200).json(contact);
-        }).catch(err => {
-          res.status(400);
-          next(new Error('Something went wrong'));
-        })
-      }
-    }
-    ).catch(err => {
-      res.status(404);
-      next(new Error('Contact Not Found'));
-    })
-};
-
 //@desc Get a contact
 //@route GET /api/contacts/:id
 //@access private
-exports.getContact = (req, res, next) => {
-  Contact.findById(req.params.id)
-    .then(contact => {
-      res.status(200).json(contact);
-    })
-    .catch(err => {
-      res.status(404);
-      next(new Error('Contact Not Found'));
-    });
-}
+exports.getContact = asyncHandler(async (req, res, next) => {
+  let contact;
 
+  await Contact.findById(req.params.id)
+    .then((foundContact) => {
+      contact = foundContact;
+    })
+    .catch((err) => {
+      res.status(404);
+      throw new Error('Contact Not Found');
+    });
+
+  if (contact.user_id.toString() !== req.user._id.toString()) {
+    res.status(403);
+    throw new Error('You are not authorized to view this contact');
+  }
+  res.status(200).json(contact);
+});
+
+
+//@desc Update a contact
+//@route PUT /api/contacts/:id
+//@access private
+exports.updateContact = asyncHandler(async (req, res, next) => {
+
+  let contact;
+
+  await Contact.findById(req.params.id)
+    .then((foundContact) => {
+      contact = foundContact;
+    })
+    .catch((err) => {
+      res.status(404);
+      throw new Error('Contact Not Found');
+    });
+
+  if (contact.user_id.toString() !== req.user._id.toString()) {
+    res.status(403);
+    throw new Error('You are not authorized to update this contact');
+  }
+
+  const updatedContact = await Contact.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+    }
+  );
+
+  res.status(200).json({
+    message: 'Contact updated',
+    updatedContact,
+  });
+});
 
 //@desc Delete a contact
 //@route DELETE /api/contacts/:id
 //@access private
-exports.deleteContact = (req, res, next) => {
-  Contact.findByIdAndDelete(req.params.id)
-    .then(() => {
-      res.status(200).json({ message: 'Contact removed' });
+exports.deleteContact = asyncHandler(async (req, res, next) => {
+  let contact;
+
+  await Contact.findById(req.params.id)
+    .then((foundContact) => {
+      contact = foundContact;
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(404);
-      next(new Error('Contact Not Found'));
+      throw new Error('Contact Not Found');
     });
-}
+
+  if (contact.user_id.toString() !== req.user._id.toString()) {
+    res.status(403);
+    throw new Error('You are not authorized to delete this contact');
+  }
+
+  await Contact.deleteOne({ _id: req.params.id });
+  res.status(200).json({ message: 'Contact removed', contact });
+});
 
 
