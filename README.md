@@ -12,7 +12,7 @@ To install and run this project, follow these steps:
 1. Clone the project to your machine:
 
 ```bash
-git clone [[url](https://github.com/lppduy/contacts-express) of the project]
+git clone [https://github.com/lppduy/contacts-express]
 ```
 
 2. Install the dependencies:
@@ -49,4 +49,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-```
+
