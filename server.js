@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(express.json());
+app.use('/api/health', ()=>resizeBy.json({msg:'ok'}));
 app.use('/api/contacts', require('./routes/contactRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use(errorHandler);
